@@ -7,8 +7,8 @@ float iTime = 0f;
 Stopwatch timer = Stopwatch.StartNew();
 Resolution iResolution = new Resolution();
 long frameCount = 0;
-//BaseShader shader = new RaymarchingShader(iResolution);
-BaseShader shader = new IntroShader(iResolution);
+BaseShader shader = new RaymarchingShader(iResolution);
+//BaseShader shader = new IntroShader(iResolution);
 
 Raylib.InitWindow(iResolution.x, iResolution.y, "CPU Shader Toy");
 //Raylib.ToggleFullscreen();

@@ -70,7 +70,7 @@ namespace CPUShaderToy
 
         private float map(Vector3 p)
         {
-            Vector3 spherePos = new Vector3((float)Math.Sin(iTime) * 3, 0, 0);
+            Vector3 spherePos = new Vector3(MathF.Sin(iTime) * 3, 0, 0);
             float sphere = sdSphere(p - spherePos, 1);
 
             Vector3 q = new Vector3(p.X, p.Y, p.Z); //input copy
@@ -97,9 +97,9 @@ namespace CPUShaderToy
 
         private float sdBox(Vector3 p, Vector3 b)
         {
-            Vector3 q = new Vector3(Math.Abs(p.X), Math.Abs(p.Y), Math.Abs(p.Z)) - b;
+            Vector3 q = new Vector3(MathF.Abs(p.X), MathF.Abs(p.Y), MathF.Abs(p.Z)) - b;
 
-            return (Max(q, 0.0f)).Length() + (float)Math.Min(Math.Max(q.X, Math.Max(q.Y, q.Z)), 0.0);
+            return (Max(q, 0.0f)).Length() + MathF.Min(MathF.Max(q.X, MathF.Max(q.Y, q.Z)), 0.0f);
         }
 
         private Vector3 Max(Vector3 v, float x)
@@ -114,25 +114,10 @@ namespace CPUShaderToy
             return Math.Min(a, b) - h * h * h * k * (1.0f / 6.0f);
         }
 
-        private float Length(Vector3 v)
-        {
-            return v.Length();
-        }
-
-        private float Max(float v, float x)
-        {
-            return Math.Max(v, x);
-        }
-
-        private float Min(float v, float x)
-        {
-            return Math.Min(v, x);
-        }
-
         private Mat2 rot2D(float angle)
         {
-            float s = (float)Math.Sin(angle);
-            float c = (float)Math.Cos(angle);
+            float s = MathF.Sin(angle);
+            float c = MathF.Cos(angle);
 
             return new Mat2(c, -s, s, c);
         }
@@ -144,12 +129,12 @@ namespace CPUShaderToy
             Vector3 temp = Util.Dot(axis, p) * axis;
 
             Vector3 temp2 = new Vector3(
-                Util.Mix(temp.X, p.X, (float)Math.Cos(angle)),
-                Util.Mix(temp.Y, p.Y, (float)Math.Cos(angle)),
-                Util.Mix(temp.Z, p.Z, (float)Math.Cos(angle))
+                Util.Mix(temp.X, p.X, MathF.Cos(angle)),
+                Util.Mix(temp.Y, p.Y, MathF.Cos(angle)),
+                Util.Mix(temp.Z, p.Z, MathF.Cos(angle))
                 );
 
-            return temp2 + Vector3.Cross(axis, p) * (float)Math.Sin(angle);
+            return temp2 + Vector3.Cross(axis, p) * MathF.Sin(angle);
         }
 
 
