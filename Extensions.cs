@@ -19,7 +19,5 @@ namespace CPUShaderToy
         {
             return new Vector3(v.X, 0, v.Z);
         }
-
     }
-    
 }

@@ -9,18 +9,14 @@ using System.Threading.Tasks;
 namespace CPUShaderToy
 {
     //from: https://www.shadertoy.com/view/MdX3zr
-    internal class FlameShader : IShader
+    internal class FlameShader : BaseShader
     {
-        private Resolution iResolution;
-        public float iTime;
-
-        public FlameShader(Resolution r)
+        public FlameShader(Resolution r) : base(r)
         {
-            iResolution = r;
+            
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void mainImage(out Vector4 fragColor, Vector2 fragCoord)
+        
+        public override void mainImage(out Vector4 fragColor, Vector2 fragCoord)
         {
             Vector2 v = new Vector2();
             v.X = -1.0f + 2.0f * fragCoord.X / iResolution.x;
