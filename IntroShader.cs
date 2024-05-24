@@ -34,14 +34,14 @@ namespace CPUShaderToy
                 uv.X = uv.X - 0.5f;
                 uv.Y = uv.Y - 0.5f;
 
-                float d = uv.Length() * (float)Math.Exp((double)-uv0.Length());
+                float d = uv.Length() * MathF.Exp(-uv0.Length());
 
                 Vector3 col = palette(uv0.Length() + i * 0.4f + iTime * 0.4f);
 
-                d = (float)Math.Sin(d * 8.0f + iTime) / 8f;
-                d = Math.Abs(d);
+                d = MathF.Sin(d * 8.0f + iTime) / 8f;
+                d = MathF.Abs(d);
 
-                d = (float)Math.Pow(0.01 / (double)d, 1.2);
+                d = MathF.Pow(0.01f / d, 1.2f);
                 //d = 0.02f / d;    
 
                 finalColor += col * d;
