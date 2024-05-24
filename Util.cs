@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -36,15 +38,30 @@ namespace CPUShaderToy
             return new Vector3(v.X / length, v.Y / length, v.Z / length);
         }
 
+        public static byte DeNormalize(float v)
+        {
+            if (v < 0) { return 0; }
+
+            if (v > 1.0f) { v = 1; }
+
+            byte max = Byte.MaxValue;
+
+            return Convert.ToByte(v * max);
+        }
+
+        public static Raylib_cs.Color ColorFromVector4(Vector4 v)
+        {
+            return new Raylib_cs.Color(
+                    Util.DeNormalize(v.X),
+                    Util.DeNormalize(v.Y),
+                    Util.DeNormalize(v.Z),
+                    Util.DeNormalize(v.W));
+        }
+
         public static float Mix(float x, float y, float a)
         {
             return x * (1 - a) + y * a;
-        }
-
-        public static float[] DotProduct(Vector3 vec1, Vector3 vec2)
-        {
-            return new float[] { vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2] };
-        }
+        }        
 
         public static Vector3 Sign(Vector3 v)
         {
