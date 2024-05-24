@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 
 namespace CPUShaderToy
 {
-    internal class FractalPyramidShader : IShader
-    {
-
-        private Resolution iResolution;
-        public float iTime;
-
-        public FractalPyramidShader(Resolution r)
+    internal class FractalPyramidShader : BaseShader
+    {   
+        public FractalPyramidShader(Resolution r) : base(r)
         {
-            iResolution = r;
+            
         }
-        public void mainImage(out Vector4 fragColor, Vector2 fragCoord)
+        public override void mainImage(out Vector4 fragColor, Vector2 fragCoord)
         {
             //Vector2 uv = (fragCoord - (iResolution.xy / 2.0f)) / iResolution.x;
 
